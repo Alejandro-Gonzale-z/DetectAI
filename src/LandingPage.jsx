@@ -1,13 +1,20 @@
 import "./index.css";
 import aiLandingPage from "./assets/aiLandingPage.jpg";
+import { useNavigate } from "react-router-dom";
 
-const landingPage = () => {
+const LandingPage = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/game');
+  }
+
   return (
     <div className="h-screen flex justify-center items-center">
       <div className="w-3/4 h-5/8 bg-gray-200 rounded-xl p-8 flex gap-20 flex-col">
         <div id="top" className="flex flex-row gap-20 h-7/8">
           <div id="left" className="w-1/2 flex flex-col">
-            <div className="text-6xl mb-2">CAN YOU DETECT AI?</div>
+            <div className="text-6xl mb-6">CAN YOU DETECT AI?</div>
             <img src={aiLandingPage} className="rounded-lg h-100" />
           </div>
           <div id="right" className="w-1/2 flex flex-col gap-3">
@@ -19,7 +26,7 @@ const landingPage = () => {
               created by a human or AI. Test your skills and see if you can
               identify real from fake!
             </div>
-            <div className="text-5xl">How To Play</div>
+            <div className="text-5xl mt-5">How To Play</div>
               <ul className="list-disc list-inside text-lg mb-4">
                 <li>Review text, images, or videos presented to you.</li>
                 <li>Make your guess: Real or AI-generated?</li>
@@ -30,12 +37,12 @@ const landingPage = () => {
                 </li>
                 <li>Earn points for accuracy and track your progress.</li>
               </ul>
-              <div className="text-lg">Think you got what it takes? Click play now to start!</div>
+              <div className="text-lg">Think you got what it takes? Click the button below to start!</div>
           </div>
         </div>
         <div id="btnContainer" className="flex justify-center items-center">
-          <button className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 w-40">
-            Play Now
+          <button className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 w-40" onClick={handleClick}>
+            Continue
           </button>
         </div>
       </div>
@@ -43,4 +50,4 @@ const landingPage = () => {
   );
 };
 
-export default landingPage;
+export default LandingPage;
