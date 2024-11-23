@@ -7,15 +7,15 @@ const InfoPage = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShowFlashScreen(false); // Hide flash screen after 2 seconds
+      setShowFlashScreen(false);
     }, 2000);
 
-    return () => clearTimeout(timer); // Clean up the timer
+    return () => clearTimeout(timer);
   }, []);
 
   const handleClick = () => {
     const indexAfterInfo = 3;
-    navigate("/game", { state: { index: indexAfterInfo } });
+    navigate("/game", { state: { index: indexAfterInfo, afterInfo: true } });
   };
 
   return (

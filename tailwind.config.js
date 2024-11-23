@@ -18,6 +18,7 @@ export default {
       },
       animation: {
         flash: 'flash 2s linear',
+        flash3: 'flash 3s linear',
         fadeIn: 'fadeIn 1s ease-in-out',
       },
     },

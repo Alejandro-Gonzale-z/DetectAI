@@ -1,6 +1,6 @@
-import "./index.css";
-import copilotLogo from "./assets/logos/copilot.png";
-import geminiLogo from "./assets/logos/gemini.png";
+import "../index.css";
+import copilotLogo from "../assets/logos/copilot.png";
+import geminiLogo from "../assets/logos/gemini.png";
 import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {

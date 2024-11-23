@@ -1,8 +1,9 @@
 import './index.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LandingPage from "./LandingPage";
-import GamePage from './GamePage';
-import InfoPage from './InfoPage';
+import LandingPage from "./pages/LandingPage";
+import GamePage from './pages/GamePage';
+import InfoPage from './pages/InfoPage';
+import GameOverPage from './pages/GameOverPage';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/game" element={<GamePage />} />
         <Route path="/info" element={<InfoPage />} />
+        <Route path="/gameOver" element={<GameOverPage />} />
       </Routes>
     </BrowserRouter>
   )
