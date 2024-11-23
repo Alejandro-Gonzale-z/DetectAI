@@ -1,23 +1,26 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import ReactAudioPlayer from "react-audio-player";
 
 const Game = ({
   contentType,
   contentSource,
+  context,
   reasons,
   correctAnswer,
   index,
   setIndex,
 }) => {
-  const [timer, setTimer] = useState(60);
+  const [timer, setTimer] = useState(10);
   const [score, setScore] = useState(0);
   const [reasonVisibility, setReasonVisibility] = useState(false);
   const [answersDisabled, setAnswersDisabled] = useState(false);
   const [lottieAnimation, setLottieAnimation] = useState(true);
-
   const timerInterval = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     timerInterval.current = setInterval(() => {
@@ -27,11 +30,12 @@ const Game = ({
           handleAnswerClick("none");
         }
         return prevTimer > 0 ? prevTimer - 1 : 0;
-    });
-  }, 1000);
+      });
+    }, 1000);
 
     return () => clearInterval(timerInterval.current);
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [index]);
 
   const handleAnswerClick = (btnClick) => {
     setReasonVisibility(true);
@@ -43,13 +47,18 @@ const Game = ({
   };
 
   const handleNextRoundClick = () => {
-    if (index < 1) {
+    if (index === 2) {
+      navigate('/info')
+    }
+
+
+    if (index < 5) {
       setIndex((prevIndex) => prevIndex + 1);
       setReasonVisibility(false);
-      setAnswersDisabled(false);
       setLottieAnimation(true);
+      setAnswersDisabled(false);
 
-      setTimer(60);
+      setTimer(10);
       timerInterval.current = setInterval(() => {
         setTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0));
       }, 1000);
@@ -79,14 +88,26 @@ const Game = ({
         <div id="mainContent">
           {contentType === "IMG" && (
             <div className="flex justify-center items-center">
-              <img src={contentSource} className="rounded-xl w-1/2" />
+              <img src={contentSource} className="rounded-xl w-2/5" />
             </div>
           )}
           {contentType === "TXT" && (
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center flex-col">
+              <p className="text-lg font-semibold mb-4">{context}</p>
               <p className="bg-slate-300 p-8 rounded-3xl max-w-xl font-semibold">
                 {contentSource}
               </p>
+            </div>
+          )}
+          {contentType === "VOICE" && (
+            <div className="flex flex-col justify-center items-center">
+              <p className='text-lg font-semibold mb-24'>{context}</p>
+                <ReactAudioPlayer
+                  className="w-100"
+                  src={contentSource}
+                  controls
+                  autoPlay={false}
+                />
             </div>
           )}
         </div>
@@ -111,18 +132,18 @@ const Game = ({
         </div>
       </div>
       {reasonVisibility && (
-        <div className="bg-gray-200 relative translate-x-24 h-1/2 w-72 p-4 rounded-3xl flex flex-col">
+        <div className="bg-gray-200 relative translate-x-24 w-72 p-4 rounded-3xl flex flex-col h-auto">
           <div className="text-center text-2xl font-semibold mb-8">
-            How can you tell?
+            Feedback
           </div>
-          <ul className="list-disc list-inside text-xl">
+          <ul className="list-disc list-inside text-xl flex flex-col gap-2">
             {reasons.map((item, index) => (
               <li key={index}>{item}</li>
             ))}
           </ul>
           <div className="flex justify-center items-center">
             <button
-              className="bg-green-500 w-48 p-4 rounded-3xl text-xl text-white mt-48"
+              className="bg-green-500 w-48 p-4 rounded-3xl text-xl text-white mt-24"
               onClick={handleNextRoundClick}
             >
               Next Round
