@@ -11,7 +11,7 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="h-screen flex justify-center items-center animate-fadeIn">
       <div className="w-3/4 h-5/8 bg-gray-200 rounded-xl p-8 flex gap-20 flex-col">
         <div id="top" className="flex flex-row gap-20 h-7/8">
           <div id="left" className="w-1/2 flex flex-col">

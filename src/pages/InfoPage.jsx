@@ -126,7 +126,7 @@ const InfoPage = () => {
           </div>
           <div className="flex justify-center items-center">
             <button
-              className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 w-1/6"
+              className="w-1/6 bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-700"
               onClick={handleClick}
             >
               Continue Playing

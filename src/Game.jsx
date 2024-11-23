@@ -185,14 +185,14 @@ const Game = ({
               className="flex flex-row justify-center items-center gap-40 mt-12"
             >
               <button
-                className="bg-red-500 w-48 p-4 rounded-3xl text-xl text-white"
+                className="bg-red-500 w-48 p-4 rounded-3xl text-xl text-white hover:bg-red-700"
                 onClick={() => handleAnswerClick("AI")}
                 disabled={answersDisabled}
               >
                 AI Generated
               </button>
               <button
-                className="bg-green-500 w-48 p-4 rounded-3xl text-xl text-white"
+                className="bg-green-500 w-48 p-4 rounded-3xl text-xl text-white hover:bg-green-700"
                 onClick={() => handleAnswerClick("Human")}
                 disabled={answersDisabled}
               >
@@ -212,7 +212,7 @@ const Game = ({
               </ul>
               <div className="flex justify-center items-center">
                 <button
-                  className="bg-green-500 w-48 p-4 rounded-3xl text-xl text-white mt-24"
+                  className="bg-green-500 w-48 p-4 rounded-3xl text-xl text-white mt-24 hover:bg-green-700"
                   onClick={handleNextRoundClick}
                 >
                   Next Round
