@@ -16,7 +16,7 @@ const Game = ({
   afterInfo,
 }) => {
   const navigate = useNavigate();
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState(62);
   const [scoreR1, setScoreR1] = useState(0);
   const [scoreR2, setScoreR2] = useState(0);
   const [reasonVisibility, setReasonVisibility] = useState(false);
@@ -98,7 +98,7 @@ const Game = ({
       setLottieAnimation(true);
       setAnswersDisabled(false);
 
-      setTimer(10);
+      setTimer(60);
       timerInterval.current = setInterval(() => {
         setTimer((prevTimer) => (prevTimer > 0 ? prevTimer - 1 : 0));
       }, 1000);
@@ -156,21 +156,21 @@ const Game = ({
             </div>
             <div id="mainContent">
               {contentType === "IMG" && (
-                <div className="flex justify-center items-center">
-                  <img src={contentSource} className="rounded-xl w-2/5" />
+                <div className="flex justify-center items-center h-auto">
+                  <img src={contentSource} className="rounded-xl max-w-3xl min-w-2xl" />
                 </div>
               )}
               {contentType === "TXT" && (
                 <div className="flex justify-center items-center flex-col">
-                  <p className="text-lg font-semibold mb-4">{context}</p>
-                  <p className="bg-slate-300 p-8 rounded-3xl max-w-xl font-semibold">
+                  <p className="text-xl font-semibold mb-4">{context}</p>
+                  <p className="bg-slate-300 p-8 rounded-3xl max-w-xl font-semibold text-2xl">
                     {contentSource}
                   </p>
                 </div>
               )}
               {contentType === "VOICE" && (
                 <div className="flex flex-col justify-center items-center">
-                  <p className="text-lg font-semibold mb-24">{context}</p>
+                  <p className="text-xl font-semibold mb-24">{context}</p>
                   <ReactAudioPlayer
                     className="w-100"
                     src={contentSource}
